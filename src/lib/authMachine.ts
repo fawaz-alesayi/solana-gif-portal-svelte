@@ -1,4 +1,4 @@
-import { createModel } from 'xstate/lib/model';
+import { createModel } from 'xstate/lib/model.js'
 import { assign } from 'xstate';
 import { checkIfPhantomWalletExists, connectWallet } from './checkWalletConnection';
 
