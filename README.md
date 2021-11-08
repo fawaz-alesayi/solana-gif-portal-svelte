@@ -27,6 +27,11 @@ pnpm dev
 pnpm dev -- --open
 ```
 
+### Developing with Gitpod!
+If you're having trouble getting anything to work just use Gitpod! Gitpod is essentialy a Linux machine with VSCode on the cloud. This repository is configured with a Gitpod environment that includes node and pnpm!
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/fawaz-alesayi/solana-gif-portal-svelte)
+
 ## Building
 
 Before creating a production version of this app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
