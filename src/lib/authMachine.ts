@@ -39,7 +39,7 @@ export const walletMachine = walletModel.createMachine(
 				}
 			},
 			walletExists: {
-                // Try to connect to the wallet if the user has already connected before "trusted mode"
+                // Try to connect to the wallet if the user has already connected before. This is called "trusted mode"
 				invoke: {
 					// eslint-disable-next-line @typescript-eslint/no-unused-vars
 					src: (context, _) => connectWallet(context.solana, true),

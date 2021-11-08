@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { walletMachine } from '$lib/authMachine';
 	import ConnectWallet from '$lib/components/ConnectWallet.svelte';
+	import GifGrid from '$lib/components/GifGrid.svelte';
+	import SubmitGif from '$lib/components/SubmitGif.svelte';
 
 	import { useMachine } from '@xstate/svelte';
 	import { onMount } from 'svelte';
@@ -10,7 +12,7 @@
 
 	const { state, send } = useMachine(walletMachine);
 
-    // Uncomment the line below to see how the state machine transitions!
+	// Uncomment the line below to see how the state machine transitions!
 	// $: console.log($state);
 
 	onMount(() => {
@@ -21,14 +23,22 @@
 <div class="App">
 	<div class="container">
 		<div class="header-container">
-			<p class="header">🖼 GIF Portal</p>
-			<p class="sub-text">View your GIF collection in the metaverse ✨</p>
+			<div class="header">
+				<img
+					alt="a cartoon frog pogging"
+					src="https://cdn.betterttv.net/emote/58ae8407ff7b7276f8e594f2/2x"
+				/>
+				Pepe Gifs
+				<img
+					alt="a cartoon frog pogging"
+					src="https://cdn.betterttv.net/emote/58ae8407ff7b7276f8e594f2/2x"
+				/>
+			</div>
+			<p class="sub-text">The spiciest pepe gifs ✨</p>
 		</div>
 
 		{#if $state.value === 'idle'}
-			<div class="sub-text">
-				SECRET MESSAGE! if you're seeing this you probably have a bad pc or internet lmao
-			</div>
+			<div class="sub-text">SECRET MESSAGE!</div>
 		{:else if $state.value === 'checkingWalletExistence'}
 			<div class="sub-text">Checking that you have Phantom Wallet...</div>
 		{:else if $state.value === 'walletExists'}
@@ -42,8 +52,9 @@
 			</div>
 		{:else if $state.value === 'walletConnected'}
 			<div class="sub-text">Wallet Connected! Address: {$state.context.wallet}</div>
+			<SubmitGif />
+			<GifGrid />
 		{/if}
-
 		<div class="footer-container">
 			<img alt="Twitter Logo" class="twitter-logo" src="/twitter-logo.svg" />
 			<a class="footer-text" href={TWITTER_LINK} target="_blank" rel="noreferrer"
@@ -53,10 +64,13 @@
 	</div>
 </div>
 
-<style>
+<style lang="scss">
+	$background: #1a202c;
+	// $background: #a833b9;
+
 	.App {
 		height: 100vh;
-		background-color: #1a202c;
+		background-color: $background;
 		overflow: scroll;
 		text-align: center;
 	}
@@ -99,13 +113,6 @@
 		-webkit-text-fill-color: transparent;
 	}
 
-	.submit-gif-button {
-		background: -webkit-linear-gradient(left, #4e44ce, #35aee2);
-		background-size: 200% 200%;
-		animation: gradient-animation 4s ease infinite;
-		margin-left: 10px;
-	}
-
 	.footer-container {
 		display: flex;
 		justify-content: center;
@@ -127,31 +134,6 @@
 		font-size: 16px;
 		font-weight: bold;
 	}
-
-	.gif-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-		grid-gap: 1.5rem;
-		justify-items: center;
-		margin: 0;
-		padding: 0;
-	}
-
-	.gif-grid .gif-item {
-		display: flex;
-		flex-direction: column;
-		position: relative;
-		justify-self: center;
-		align-self: center;
-	}
-
-	.gif-item img {
-		width: 100%;
-		height: 300px;
-		border-radius: 10px;
-		object-fit: cover;
-	}
-
 	.connected-container input[type='text'] {
 		display: inline-block;
 		color: white;

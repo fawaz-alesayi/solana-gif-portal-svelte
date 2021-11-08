@@ -1,5 +1,6 @@
 # buildspace Solana GIF Portal Project
-*Note: This is a bit different from the original project since it was made with Svelte!*
+*Note: This is a bit different from the original project since it was made with Svelte and XState!*
+*I choose Svelte because It's easier to read. XState was choosen to prevent and catch any unexpected state bugs.*
 
 ### **Welcome 👋**
 To get started with this project, clone this repo and follow these commands:
@@ -28,10 +29,12 @@ pnpm dev -- --open
 
 ## Building
 
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
+Before creating a production version of this app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
 
 ```bash
 pnpm build
 ```
+
+IF you ran `pnpm install` you already have a static adapter that builds a static version of the application (CSS, HTML, JS)!
 
 > You can preview the built app with `pnpm preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
