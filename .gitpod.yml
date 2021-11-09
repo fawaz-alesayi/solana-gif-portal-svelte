@@ -5,3 +5,4 @@ tasks:
   - init: pnpm add -g mocha
   - init: pnpm i
   - init: solana config set --url localhost
+  - init: pnpm add -g @project-serum/anchor-cli
