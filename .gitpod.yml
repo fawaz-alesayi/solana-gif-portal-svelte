@@ -4,6 +4,7 @@ image:
 tasks:
   - name: Setup all dependenies
     init: |
+      solana config set --url localhost
       pnpm add -g mocha
       pnpm add -g @project-serum/anchor-cli
       pnpm i
