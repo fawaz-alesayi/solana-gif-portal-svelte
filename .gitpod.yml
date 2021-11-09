@@ -7,5 +7,4 @@ tasks:
       export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
       solana config set --url localhost
       pnpm add -g mocha
-      pnpm add -g @project-serum/anchor-cli
       pnpm i
