@@ -2,7 +2,8 @@
 image:
   file: .gitpod.Dockerfile
 tasks:
-  - init: pnpm add -g mocha
-  - init: pnpm i
-  - init: solana config set --url localhost
-  - init: pnpm add -g @project-serum/anchor-cli
+  - name: Setup all dependenies
+    init: |
+    pnpm add -g mocha
+    pnpm add -g @project-serum/anchor-cli
+    pnpm i
