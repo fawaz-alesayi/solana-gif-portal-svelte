@@ -4,6 +4,6 @@ image:
 tasks:
   - name: Setup all dependenies
     init: |
-    pnpm add -g mocha
-    pnpm add -g @project-serum/anchor-cli
-    pnpm i
+      pnpm add -g mocha
+      pnpm add -g @project-serum/anchor-cli
+      pnpm i
