@@ -8,6 +8,6 @@ RUN sh -c "$(curl -sSfL https://release.solana.com/v1.8.2/install)"
 
 # Anchor and its dependencies
 USER gitpod
-WORKDIR /workspace
-RUN sudo apt-get install -y pkg-config build-essential libudev-dev
-RUN bash -lc "cargo install --git https://github.com/project-serum/anchor --tag v0.18.0 anchor-cli --locked"
+ENV PATH="$HOME/.cargo/bin:$PATH"
+RUN sudo apt update && sudo apt install -y pkg-config build-essential libudev-dev
+RUN cargo install --git https://github.com/project-serum/anchor --tag v0.18.0 anchor-cli --locked
