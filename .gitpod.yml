@@ -5,6 +5,7 @@ tasks:
   - name: Setup all dependenies
     init: |
       export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
+      cargo install --git https://github.com/project-serum/anchor --tag v0.18.0 anchor-cli --locked
       solana config set --url localhost
       pnpm add -g mocha
       pnpm i
