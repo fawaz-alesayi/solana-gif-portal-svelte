@@ -9,9 +9,9 @@ let program: Program<Contract>;
 let baseAccount: anchor.web3.Keypair;
 let tx;
 
-describe('contract', async () => {
+describe('contract', () => {
 
-  before(async () => {
+  beforeEach(async () => {
     // Configure the client to use the local cluster.
     provider = anchor.Provider.env();
     anchor.setProvider(provider);
@@ -44,16 +44,34 @@ describe('contract', async () => {
 
   it('should increment a gif by one', async () => {
 
-    const tx = await program.rpc.addGif({
+    const tx = await program.rpc.addGif("https://tenor.com/view/roblox-cute-puppy-doing-cute-things-gif-21268789", {
       accounts: {
         baseAccount: baseAccount.publicKey,
+        user: provider.wallet.publicKey,
       }
     })
 
     const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
-
-    console.log("📝 Your transaction signature is ", tx);
     expect(account.totalGifs.toString()).to.be.string('1', 'totalGifs has not been incremented.');
 
   })
+
+  it('should retrieve the gif after it has been posted', async () => {
+    const addedGif = "https://tenor.com/view/roblox-cute-puppy-doing-cute-things-gif-21268789"
+    const tx = await program.rpc.addGif(addedGif, {
+      accounts: {
+        baseAccount: baseAccount.publicKey,
+        user: provider.wallet.publicKey,
+      }
+    })
+
+    const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
+    expect(account.gifList).to.be.an('array');
+    expect(account.gifList[0]).to.have.property('gifLink');
+    const gifLink: string = account.gifList[0].gifLink;
+    console.log('👀 GIF List', account.gifList)
+    expect(gifLink).equal(addedGif);
+  })
+
+
 });
