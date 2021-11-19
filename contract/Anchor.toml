@@ -1,11 +1,11 @@
-[programs.localnet]
-contract = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+[programs.devnet]
+contract = "7Q8FNVu7DHKpM7hK1hPytnqwMQL2aZcLbGFQ2LwbQ9De"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "/home/gitpod/.config/solana/id.json"
 
 [scripts]

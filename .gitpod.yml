@@ -11,4 +11,5 @@ tasks:
       npm add -g mocha
       npm add -g ts-mocha
       pnpm i
-      solana-keygen new
+      cd contract && npm i
+      
