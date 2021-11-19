@@ -1,4 +1,6 @@
-export const checkIfPhantomWalletExists = async (): Promise<Record<string, unknown>> => {
+import type { Solana } from "./types/web3";
+
+export const checkIfPhantomWalletExists = async (): Promise<Solana> => {
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { solana } = window as any;
@@ -15,9 +17,8 @@ export const checkIfPhantomWalletExists = async (): Promise<Record<string, unkno
     }
   };
 
-
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const connectWallet = async (solana, trusted: boolean): Promise<string> => {
+export const connectWallet = async (solana: Solana, trusted: boolean): Promise<string> => {
     try {
         // Only connect the wallet if the user has connected before.
         const response = await solana.connect({ onlyIfTrusted: trusted });

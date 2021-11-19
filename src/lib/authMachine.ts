@@ -1,9 +1,10 @@
 import { createModel } from 'xstate/lib/model.js'
 import { assign } from 'xstate';
 import { checkIfPhantomWalletExists, connectWallet } from './checkWalletConnection';
+import type { Solana } from './types/web3';
 
 const walletModel = createModel({
-	solana: {} as Record<any, any>,
+	solana: {} as Solana,
 	wallet: '' as string,
 	error: '' as string,
 	events: {
