@@ -12,6 +12,7 @@
 </script>
 
 {#if $gifService.value === 'loaded'}
+<div>Danke</div>
 	<div class="connected-container">
 		<div class="gif-grid">
 			{#each $gifService.context.gifUrls as gifUrl}
@@ -21,6 +22,11 @@
 			{/each}
 		</div>
 	</div>
+{:else if $gifService.value === 'loadGifError' }
+<div>Error in loading gifs</div>
+<div>
+	{$gifService.context.loadGifError}
+</div>
 {/if}
 
 <style>

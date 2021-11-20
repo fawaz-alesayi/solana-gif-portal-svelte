@@ -5,3 +5,4 @@ node_modules
 /package
 .env
 test-ledger
+/src/lib/secret.keypair.json

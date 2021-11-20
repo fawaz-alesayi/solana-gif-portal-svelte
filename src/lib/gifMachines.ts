@@ -1,8 +1,8 @@
 import { createModel } from 'xstate/lib/model.js';
 import { assign, interpret } from 'xstate';
-import idl from './idl.json';
-import { Program } from '@project-serum/anchor';
-import { fetchBaseAccount, _programStore } from './provider';
+import { createBaseAccount, _programStore } from './provider';
+import { get } from 'svelte/store';
+import { baseAccount } from './baseAccountPair';
 
 const gifDataStore = [
 	'https://c.tenor.com/BjO9lUT6sNYAAAAi/pepe-frog.gif',
@@ -16,7 +16,9 @@ export const gifModel = createModel({
 	gifUrls: [] as string[],
 
 	// The current URL that the user has entered in the input box.
-	currentUrl: ''
+	currentUrl: '',
+
+	loadGifError: {},
 },
 	{
 		events: {
@@ -72,6 +74,12 @@ export const gifMachine = gifModel.createMachine({
 							return event.data;
 						}
 					})
+				},
+				onError: {
+					target: "loadGifError",
+					actions: assign({
+						loadGifError: (_, event) => event.data,
+					})
 				}
 			}
 		},
@@ -85,27 +93,31 @@ export const gifMachine = gifModel.createMachine({
 				},
 			}
 		},
-		error: {}
+		loadGifError: {}
 	}
 });
 
 const submitGif = async (url: string) => {
 	// submit to Solana block chain here.
-	gifDataStore.push(url);
+	const { provider, program } = get(_programStore);
+	await program.rpc.addGif(url, {
+		accounts: {
+		  baseAccount: baseAccount.publicKey,
+		  user: provider.wallet.publicKey,
+		},
+	  });
 	return gifDataStore;
 };
 
 const loadGifUrls = async () => {
-	try {
-		const program = _programStore;
-		fetchBaseAccount()
+	const { provider, program } = get(_programStore);
+	await createBaseAccount(program, baseAccount);
+	console.log("Loaded a new BaseAccount w/ address:", baseAccount.publicKey.toString())
 
-		console.log("Got the account", account)
-		return account.gifList
+	const data = await program.account.baseAccount.fetch(baseAccount.publicKey);
 
-	} catch (error) {
-		Promise.reject(error);
-	}
+	console.log("Got the account", data.gifList);
+	return data.gifList;
 }
 
 export const gifService = interpret(gifMachine).start();

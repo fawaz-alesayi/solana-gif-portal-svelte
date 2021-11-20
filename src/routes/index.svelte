@@ -13,7 +13,8 @@
 	const { state, send } = useMachine(walletMachine);
 
 	// Uncomment the line below to see how the state machine transitions!
-	// $: console.log($state);
+	$: console.log($state.value);
+	$: console.log($state.context);
 
 	onMount(() => {
 		send('CHECK_WALLET_EXISTENCE');
@@ -50,10 +51,12 @@
 			<div class="sub-text">
 				To view this page, you'll need <a href="https://phantom.app/">Phantom Wallet</a>
 			</div>
-		{:else if $state.value === 'walletConnected'}
-			<div class="sub-text">Wallet Connected! Address: {$state.context.wallet}</div>
+		{:else if $state.value === 'systemProgramInitSuccess'}
+			<div class="sub-text">Wallet Connected! Address: {$state.context.wallet.publicKey.toString()}</div>
 			<SubmitGif />
 			<GifGrid />
+		{:else if $state.value === 'systemProgramInitError'}
+			<div class="sub-text">Whoops, something went wrong from our side, inform me @fawaztsa on twitter</div>
 		{/if}
 		<div class="footer-container">
 			<img alt="Twitter Logo" class="twitter-logo" src="/twitter-logo.svg" />

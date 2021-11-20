@@ -47,7 +47,7 @@ export type Contract = {
     ],
     "accounts": [
       {
-        "name": "BaseAccount",
+        "name": "baseAccount",
         "type": {
           "kind": "struct",
           "fields": [

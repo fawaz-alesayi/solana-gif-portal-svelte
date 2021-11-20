@@ -8,6 +8,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^4.33.0
   '@typescript-eslint/parser': ^4.33.0
   '@xstate/svelte': ^0.2.0
+  buffer: ^6.0.3
   eslint: ^7.32.0
   eslint-config-prettier: ^8.3.0
   eslint-plugin-svelte3: ^3.2.1
@@ -26,11 +27,12 @@ dependencies:
   '@project-serum/anchor': 0.18.0
   '@solana/web3.js': 1.30.2
   '@xstate/svelte': 0.2.0_svelte@3.44.1+xstate@4.26.0
+  buffer: 6.0.3
   xstate: 4.26.0
 
 devDependencies:
   '@sveltejs/adapter-static': 1.0.0-next.21
-  '@sveltejs/kit': 1.0.0-next.195_sass@1.43.4+svelte@3.44.1
+  '@sveltejs/kit': 1.0.0-next.196_sass@1.43.4+svelte@3.44.1
   '@typescript-eslint/eslint-plugin': 4.33.0_cc617358c89d3f38c52462f6d809db4c
   '@typescript-eslint/parser': 4.33.0_eslint@7.32.0+typescript@4.4.4
   eslint: 7.32.0
@@ -222,8 +224,8 @@ packages:
     resolution: {integrity: sha512-B4+QoUVAaANKx+mHntG8SqF45zbj3Ct4Akg/cGauo6COyfKZRhO5OsMa+wPuT2TKJBZC4eEDK0p+p9nyQBkxKQ==}
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.195_sass@1.43.4+svelte@3.44.1:
-    resolution: {integrity: sha512-R2X4FgzXQhp63XOik6S1Flw91S2CEA7sTxdsnNFrq3O+bIN7pQhJhkm6zgH68MZANdDcq8oIiSRkxT4M3t1+jQ==}
+  /@sveltejs/kit/1.0.0-next.196_sass@1.43.4+svelte@3.44.1:
+    resolution: {integrity: sha512-z7sA/2/3Il5biibjPXCYXJC11TyFhgCvMaJvvbtMnu2l3EmOmJBMS+r2djGptzfFsugSVNwGQFn8+ldWQWq3jA==}
     engines: {node: '>=14.13'}
     hasBin: true
     peerDependencies:

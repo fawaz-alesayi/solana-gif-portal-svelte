@@ -2,11 +2,14 @@ import { createModel } from 'xstate/lib/model.js'
 import { assign } from 'xstate';
 import { checkIfPhantomWalletExists, connectWallet } from './checkWalletConnection';
 import type { Solana } from './types/web3';
+import { initProgram } from './provider';
+import type { NodeWallet } from '@project-serum/anchor/dist/cjs/provider';
 
 const walletModel = createModel({
 	solana: {} as Solana,
-	wallet: '' as string,
-	error: '' as string,
+	wallet: {} as NodeWallet,
+	walletConnectionError: '' as string,
+	systemProgramError: {},
 	events: {
 		CHECK_WALLET_EXISTENCE: () => ({}),
         CONNECT_WALLET: () => ({}),
@@ -53,7 +56,7 @@ export const walletMachine = walletModel.createMachine(
                     onError: {
                         target: 'walletConnectionFailed',
                         actions: assign({
-                            error: (_, event) => event.data
+                            walletConnectionError: (_, event) => event.data
                         }),
                     }
 				},
@@ -75,12 +78,25 @@ export const walletMachine = walletModel.createMachine(
                     onError: {
                         target: 'walletConnectionFailed',
                         actions: assign({
-                            error: (_, event) => event.data
+                            walletConnectionError: (_, event) => event.data
                         }),
                     }
 				}
             },
-			walletConnected: {},
+			walletConnected: {
+				invoke: {
+					src: (context, _) => initProgram("devnet", context.solana),
+					onDone: {
+						target: "systemProgramInitSuccess",
+					},
+					onError: {
+						target: "systemProgramInitError",
+						actions: assign({
+							systemProgramError: (_, event) => event.data
+						}),
+					}
+				},
+			},
             walletConnectionFailed: {
                 on: {
                     CONNECT_WALLET: {
@@ -89,6 +105,8 @@ export const walletMachine = walletModel.createMachine(
                 }
             },
 			walletDoesNotExist: {},
+			systemProgramInitSuccess: {},
+			systemProgramInitError: {},
 		}
 	},
 	{}

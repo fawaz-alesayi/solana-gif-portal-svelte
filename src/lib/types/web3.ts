@@ -20,5 +20,3 @@ export interface SolanaWindow extends Window {
 }
 
 export type BaseAccount = TypeDef<typeof IDL.accounts[0], IdlTypes<Contract>>;
-
-export let solana: Solana;

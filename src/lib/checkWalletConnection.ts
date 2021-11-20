@@ -18,11 +18,10 @@ export const checkIfPhantomWalletExists = async (): Promise<Solana> => {
   };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const connectWallet = async (solana: Solana, trusted: boolean): Promise<string> => {
+export const connectWallet = async (solana: Solana, trusted: boolean) => {
     try {
         // Only connect the wallet if the user has connected before.
-        const response = await solana.connect({ onlyIfTrusted: trusted });
-        return response.publicKey.toString();
+        return await solana.connect({ onlyIfTrusted: trusted });
     } catch (error) {
         return Promise.reject(error);
     }
