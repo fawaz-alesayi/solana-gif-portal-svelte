@@ -27,6 +27,11 @@ pnpm dev
 pnpm dev -- --open
 ```
 
+### Exporting your Solana Private Keys
+This Svelte app reads your private key from an environment variable. To export your key as an environment variables:
+1. Create a new keypair using `solana-keygen new` or recover a previous keypair by `solana-keygen recover`
+2. On Linux, you will find the private key in `~/.config/solana.id.json`. Copy all contents of that file and export it using `export PRIVATE_KEY=<Whatever you copied>`
+
 ### Developing with Gitpod!
 If you're having trouble getting anything to work just use Gitpod! Gitpod is essentialy a Linux machine with VSCode on the cloud. This repository is configured with a Gitpod environment that includes node and pnpm!
 
