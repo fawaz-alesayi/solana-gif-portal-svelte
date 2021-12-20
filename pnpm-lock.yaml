@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@project-serum/anchor': ^0.18.2
+  '@project-serum/anchor': 0.19.1-beta.1
   '@solana/web3.js': ^1.31.0
   '@sveltejs/adapter-static': ^1.0.0-next.22
   '@sveltejs/kit': next
@@ -24,7 +24,7 @@ specifiers:
   xstate: ^4.26.1
 
 dependencies:
-  '@project-serum/anchor': 0.18.2
+  '@project-serum/anchor': 0.19.1-beta.1
   '@solana/web3.js': 1.31.0
   '@xstate/svelte': 0.2.0_svelte@3.44.3+xstate@4.26.1
   buffer: 6.0.3
@@ -155,8 +155,8 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@project-serum/anchor/0.18.2:
-    resolution: {integrity: sha512-uyjiN/3Ipp+4hrZRm/hG18HzGLZyvP790LXrCsGO3IWxSl28YRhiGEpKnZycfMW94R7nxdUoE3wY67V+ZHSQBQ==}
+  /@project-serum/anchor/0.19.1-beta.1:
+    resolution: {integrity: sha512-TzkgS5a4WUDJotmur9/pQhqeqa5W14h++ppF+oGZVoR0EkcLbW7SKpx/z80XhsHCIhWz9/1hBAkbKElXdKUUiw==}
     engines: {node: '>=11'}
     dependencies:
       '@project-serum/borsh': 0.2.3_@solana+web3.js@1.31.0
