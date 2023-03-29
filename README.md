@@ -1,3 +1,7 @@
+# Archive Note
+
+I abandoned all things related to web3.
+
 # buildspace Solana GIF Portal Project
 *Note: This is a bit different from the original project since it was made with Svelte and XState!*
 *I choose Svelte because It's easier to read. XState was choosen to prevent and catch any unexpected state bugs.*
